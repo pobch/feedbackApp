@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
+import Payments from './Payments'
+
 
 class Header extends Component {
   renderMenu = () => {
@@ -13,7 +15,10 @@ class Header extends Component {
         return <li><a href="/auth/google">Log in With Google</a></li>
       default:
         // an user is already logged in
-        return <li><a href="/api/logout">Log Out</a></li>
+        return [
+          <li key="1"><Payments/></li>,
+          <li key="2"><a href="/api/logout">Log Out</a></li>
+        ]
     }
   }
   
