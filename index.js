@@ -20,6 +20,8 @@ app.use(
 )
 app.use(passport.initialize())
 app.use(passport.session())
+  // See how cookie-session and passport work together on
+  // 'Adding MongoDB' > '[Optional] A Deeper Dive' of the course.
 
 require('./routes/authRoute')(app)
 require('./routes/billingRoutes')(app)

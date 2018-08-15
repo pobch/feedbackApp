@@ -4,19 +4,23 @@ import { connect } from 'react-redux'
 
 import * as actions from '../actions'
 
-
-const Payments = (props) => {
+const Payments = props => {
   return (
     <StripeCheckout
       name="Emaily"
       description="$5 for 5 email credits"
-      amount={ 500 }
-      token={ token => props.handleToken(token) }
-      stripeKey={ process.env.REACT_APP_STRIPE_KEY }
+      amount={500}
+      token={token => props.handleToken(token)}
+      stripeKey={process.env.REACT_APP_STRIPE_KEY}
     >
-      <button type="button" className="btn">Add Credits</button>
+      <button type="button" className="btn">
+        Add Credits
+      </button>
     </StripeCheckout>
   )
 }
 
-export default connect(null, actions)(Payments)
+export default connect(
+  null,
+  actions
+)(Payments)
