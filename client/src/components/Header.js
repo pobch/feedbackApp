@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import Payments from './Payments'
 
 class Header extends Component {
-  renderMenu = () => {
+  renderContent = () => {
     switch (this.props.auth) {
       case null:
         // deciding whether an user is logged in or not
@@ -36,8 +37,10 @@ class Header extends Component {
     return (
       <nav>
         <div className="nav-wrapper">
-          <a className="brand-logo">Emaily</a>
-          <ul className="right">{this.renderMenu()}</ul>
+          <Link to={this.props.auth ? '/surveys' : '/'} className="brand-logo">
+            Emaily
+          </Link>
+          <ul className="right">{this.renderContent()}</ul>
         </div>
       </nav>
     )
