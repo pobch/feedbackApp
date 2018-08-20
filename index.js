@@ -27,5 +27,16 @@ app.use(passport.session())
 require('./routes/authRoute')(app)
 require('./routes/billingRoutes')(app)
 
+if (process.env.NODE_ENV === 'production') {
+  // serve static files:
+  app.use(express.static('client/build')) // All files in this folder could be accessed via '/' route
+
+  // serve 'index.html' to all remain routes:
+  const path = require('path')
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build/index.html'))
+  })
+}
+
 const PORT = process.env.PORT || 5000
 app.listen(PORT)
