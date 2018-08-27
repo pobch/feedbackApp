@@ -27,6 +27,7 @@ app.use(passport.session())
 
 require('./routes/authRoute')(app)
 require('./routes/billingRoutes')(app)
+require('./routes/surveyRoutes')(app)
 
 if (process.env.NODE_ENV === 'production') {
   // serve static files:
