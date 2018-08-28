@@ -9,10 +9,10 @@ const surveyTemplate = survey => {
           <p>Please answer the following question :</p>
           <p>${survey.body}</p>
           <div>
-            <a href="${keys.redirectDomain}">Yes</a>
+            <a href="${keys.redirectDomain}/api/surveys">Yes</a>
           </div>
           <div>
-            <a href="${keys.redirectDomain}">No</a>
+            <a href="${keys.redirectDomain}/api/surveys">No</a>
           </div>
         </div>
       </body>
