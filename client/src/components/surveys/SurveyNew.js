@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class SurveyNew extends Component {
+class SurveyNew extends Component {
   state = {
     showReview: false
   }
@@ -16,3 +16,5 @@ export default class SurveyNew extends Component {
     return <div>{this.renderContent()}</div>
   }
 }
+
+export default SurveyNew
