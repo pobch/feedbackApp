@@ -4,6 +4,7 @@ import { reduxForm, Field } from 'redux-form'
 import { Link } from 'react-router-dom'
 import formFields from './formFields'
 import SurveyField from './SurveyField'
+import validateEmails from '../../utils/validateEmails'
 
 const renderFields = () => {
   return _.map(formFields, ({ label, name }) => {
@@ -36,11 +37,15 @@ const SurveyForm = props => {
 
 const validate = values => {
   const errors = {}
+
+  errors.recipients = validateEmails(values.recipients || '')
+
   _.each(formFields, ({ name }) => {
     if (!values[name]) {
       errors[name] = 'You must provide a value'
     }
   })
+
   return errors
 }
 
