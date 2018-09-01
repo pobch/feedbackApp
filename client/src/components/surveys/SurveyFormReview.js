@@ -1,39 +1,32 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
 import * as actions from '../../actions'
 import formFields from './formFields'
 
-class SurveyFormReview extends Component {
-  renderReview = () => {
-    return _.map(formFields, ({ label, name }) => {
-      return (
-        <React.Fragment key={name}>
-          <div>{label}</div>
-          <div>{this.props.formValues[name]}</div>
-        </React.Fragment>
-      )
-    })
-  }
-
-  render() {
+const SurveyFormReview = ({ onBack, formValues, submitSurvey }) => {
+  const renderReview = _.map(formFields, ({ label, name }) => {
     return (
-      <div>
-        <h3>Confirm your input</h3>
-        {this.renderReview()}
-        <button type="button" onClick={this.props.onBack}>
-          Back
-        </button>
-        <button
-          type="button"
-          onClick={() => this.props.submitSurvey(this.props.formValues)}
-        >
-          Submit
-        </button>
-      </div>
+      <React.Fragment key={name}>
+        <label>{label}</label>
+        <div>{formValues[name]}</div>
+      </React.Fragment>
     )
-  }
+  })
+
+  return (
+    <div>
+      <h3>Confirm your input</h3>
+      {renderReview}
+      <button type="button" onClick={onBack}>
+        Back
+      </button>
+      <button type="button" onClick={() => submitSurvey(formValues)}>
+        Submit
+      </button>
+    </div>
+  )
 }
 
 const mapStateToProps = state => {
