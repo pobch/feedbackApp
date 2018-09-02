@@ -24,12 +24,12 @@ const SurveyForm = props => {
   return (
     <form onSubmit={props.handleSubmit(props.onNext)}>
       {renderFields()}
-      <Link to="/surveys" className="btn">
+      <Link to="/surveys" className="red btn-flat white-text">
         Cancel
       </Link>
-      <button type="submit" className="btn right red">
+      <button type="submit" className="teal btn-flat right white-text">
         Next
-        <i className="material-icons">done</i>
+        <i className="material-icons right">done</i>
       </button>
     </form>
   )

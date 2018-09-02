@@ -18,13 +18,22 @@ const SurveyFormReview = ({ onBack, formValues, submitSurvey, history }) => {
 
   return (
     <div>
-      <h3>Confirm your input</h3>
+      <h5>Please confirm your entries</h5>
       {renderReview}
-      <button type="button" onClick={onBack}>
+      <button
+        type="button"
+        className="yellow darken-3 btn-flat white-text"
+        onClick={onBack}
+      >
         Back
       </button>
-      <button type="button" onClick={() => submitSurvey(formValues, history)}>
-        Submit
+      <button
+        type="button"
+        className="green btn-flat right white-text"
+        onClick={() => submitSurvey(formValues, history)}
+      >
+        Send Survey
+        <i className="material-icons right">email</i>
       </button>
     </div>
   )
