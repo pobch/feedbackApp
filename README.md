@@ -1,5 +1,5 @@
 ## GetFeedback App
-Stack :<br/>
+Stack :
 - Front-end
   - React.js
   - Redux
@@ -16,5 +16,5 @@ Stack :<br/>
 - Services :
   - Stripe
   - SendGrid
-<hr/>
+______
 Reference : Stephen Grider's [Node with React: Fullstack Web Development](https://www.udemy.com/node-with-react-fullstack-web-development/)
