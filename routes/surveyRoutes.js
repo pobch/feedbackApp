@@ -15,13 +15,40 @@ module.exports = app => {
   })
 
   app.post('/api/surveys/webhook', (req, res) => {
-    const events = _.map(req.body, ({ url }) => {
-      const pathname = new URL(url).pathname
-      const p = new Path('/api/surveys/:surveyId/:choice')
-      return p.test(pathname)
-    })
-    console.log(events)
-    res.send('OK')
+    const p = new Path('/api/surveys/:surveyId/:choice')
+
+    _.chain(req.body)
+      .map(({ url, email }) => {
+        const pathname = new URL(url).pathname
+        const match = p.test(pathname) // cannot use object destructure bcoz test() can return null if not match
+        if (match) {
+          return {
+            email,
+            surveyId: match.surveyId,
+            choice: match.choice
+          }
+        }
+      })
+      .compact()
+      .uniqBy('email', 'surveyId')
+      .forEach(({ email, surveyId, choice }) => {
+        Survey.updateOne(
+          {
+            _id: surveyId,
+            recipients: {
+              $elemMatch: { email: email, responded: false }
+            }
+          },
+          {
+            $inc: { [choice]: 1 },
+            $set: { 'recipients.$.responded': true },
+            lastResponded: new Date()
+          }
+        ).exec()
+      })
+      .value()
+
+    res.send('OK') // response to sendGrid
   })
 
   app.post('/api/surveys', requireLogin, requireCredit, async (req, res) => {
