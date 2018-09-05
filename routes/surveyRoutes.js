@@ -51,6 +51,14 @@ module.exports = app => {
     res.send('OK') // response to sendGrid
   })
 
+  app.get('/api/surveys', requireLogin, async (req, res) => {
+    const surveys = await Survey.find({
+      _user: req.user.id
+    }).select({ recipients: false })
+
+    res.send(surveys)
+  })
+
   app.post('/api/surveys', requireLogin, requireCredit, async (req, res) => {
     const { title, subject, body, recipients } = req.body
 
