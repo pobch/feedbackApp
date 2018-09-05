@@ -20,6 +20,5 @@ const surveyTemplate = survey => {
     </html>
   `
 }
-// prettier-ignore-end
 
 module.exports = surveyTemplate
